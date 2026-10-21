@@ -16,7 +16,6 @@ public class Element {
     public Element(Product product, int quantity) {
         this.product = product;
         this.quantity = quantity;
-        // El precio del elemento es el precio del producto al momento de la compra
         this.price = product.getPrice();
     }
 

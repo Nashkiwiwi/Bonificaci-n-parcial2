@@ -31,7 +31,6 @@ public class MarketHub {
         }
     }
 
-    // Crea la tienda, se la asigna al vendedor y la registra en el hub
     public Store createStore(String name, LocalDate creationDate, Seller owner) {
         if (owner == null) {
             return null;
@@ -50,7 +49,6 @@ public class MarketHub {
         return stores;
     }
 
-    // Busqueda por indice
     public Store getStore(int index) {
         if (index >= 0 && index < stores.size()) {
             return stores.get(index);
@@ -58,7 +56,6 @@ public class MarketHub {
         return null;
     }
 
-    // Busqueda por nombre
     public Store getStore(String name) {
         for (Store store : stores) {
             if (store.getName().equals(name)) {
@@ -68,7 +65,6 @@ public class MarketHub {
         return null;
     }
 
-    // Busqueda por identificador
     public Client getClient(int id) {
         for (User user : users) {
             if ( user.getId() == id) {
@@ -78,7 +74,6 @@ public class MarketHub {
         return null;
     }
 
-    // Busqueda por identificador
     public Seller getSeller(int id) {
         for (User user : users) {
             if (user.getId() == id) {

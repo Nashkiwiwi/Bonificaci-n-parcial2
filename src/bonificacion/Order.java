@@ -41,14 +41,12 @@ public class Order {
         return products;
     }
  
-    // Solo se pueden añadir productos mientras la orden está PENDING
     public void addProduct(Product product, int quantity) {
         if (status == Status.PENDING) {
             products.add(new Element(product, quantity));
         }
     }
  
-    // Una orden es válida cuando todos sus productos tienen stock suficiente
     public boolean isValid() {
         for (Element element : products) {
             if (!element.getProduct().hasStock(element.getQuantity())) {
@@ -77,7 +75,6 @@ public class Order {
         if (status == Status.PENDING) {
             status = Status.CANCELED;
         } else if (status == Status.SENT) {
-            // El stock solo se había reducido al confirmar, por eso se devuelve aquí
             for (Element element : products) {
                 element.getProduct().increaseStock(element.getQuantity());
             }

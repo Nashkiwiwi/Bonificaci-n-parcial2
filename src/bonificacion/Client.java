@@ -84,7 +84,6 @@ public class Client extends User {
         return valueOrders(Status.SENT) + valueOrders(Status.DELIVERED);
     }
 
-    // Ingreso generado por un producto en las ordenes SENT y DELIVERED de este cliente
     public double incomeOfProduct(Product product) {
         double total = 0;
         for (Order order : orders) {
