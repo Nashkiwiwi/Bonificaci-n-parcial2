@@ -15,7 +15,6 @@ private Store store;
 
     public Seller(int id, String name, String email, LocalDate registrationDate) {
         super(id, name, email, registrationDate);
-        this.store = null;
     }
 
     public Store getStore() {

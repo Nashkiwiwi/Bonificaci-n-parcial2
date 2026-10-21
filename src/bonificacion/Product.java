@@ -42,4 +42,16 @@ public class Product {
     public int getInventoryQuantity() {
         return inventoryQuantity;
     }
+    
+    public boolean hasStock(int quantity) {
+        return inventoryQuantity >= quantity;
+    }
+
+    public void decreaseStock(int quantity) {
+        inventoryQuantity -= quantity;
+    }
+
+    public void increaseStock(int quantity) {
+        inventoryQuantity += quantity;
+    }
 }
