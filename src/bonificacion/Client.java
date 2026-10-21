@@ -18,7 +18,38 @@ public class Client extends User {
         super(id, name, email, registrationDate);
         this.orders = new ArrayList<>();
     }
-    
+
+    public void addOrder(Order order) {
+        if (order != null) {
+            orders.add(order);
+        }
+    }
+
+    public Order makeOrder(int id, LocalDate date) {
+        Order order = new Order(id, this, date);
+        addOrder(order);
+        return order;
+    }
+
+    public void addProductToOrder(int orderId, Product product, int quantity) {
+        Order order = getOrder(orderId);
+        if (order != null) {
+            order.addProduct(product, quantity);
+        }
+    }
+
+    public ArrayList<Order> getOrders() {
+        return orders;
+    }
+
+    public Order getOrder(int id) {
+        for (Order order : orders) {
+            if (order.getId() == id) {
+                return order;
+            }
+        }
+        return null;
+    }
     
     
 }
