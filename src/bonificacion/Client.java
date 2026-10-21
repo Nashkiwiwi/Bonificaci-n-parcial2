@@ -19,16 +19,17 @@ public class Client extends User {
         this.orders = new ArrayList<>();
     }
 
-    public void addOrder(Order order) {
-        if (order != null) {
-            orders.add(order);
-        }
+    public void makeOrder(int orderId, LocalDate date) {
+        orders.add(new Order(orderId, this, date));
     }
 
-    public Order makeOrder(int id, LocalDate date) {
-        Order order = new Order(id, this, date);
-        addOrder(order);
-        return order;
+    public Order getOrder(int orderId) {
+        for (Order order : orders) {
+            if (order.getId() == orderId) {
+                return order;
+            }
+        }
+        return null;
     }
 
     public void addProductToOrder(int orderId, Product product, int quantity) {
@@ -38,18 +39,67 @@ public class Client extends User {
         }
     }
 
+    public void confirmOrder(int orderId) {
+        Order order = getOrder(orderId);
+        if (order != null) {
+            order.confirm();
+        }
+    }
+
+    public void receiveOrder(int orderId) {
+        Order order = getOrder(orderId);
+        if (order != null) {
+            order.receive();
+        }
+    }
+
+    public void cancelOrder(int orderId) {
+        Order order = getOrder(orderId);
+        if (order != null) {
+            order.cancel();
+        }
+    }
+
+    public int countOrders(Status status) {
+        int count = 0;
+        for (Order order : orders) {
+            if (order.getStatus() == status) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public double valueOrders(Status status) {
+        double total = 0;
+        for (Order order : orders) {
+            if (order.getStatus() == status) {
+                total += order.getTotal();
+            }
+        }
+        return total;
+    }
+
+    public double spentSentDelivered() {
+        return valueOrders(Status.SENT) + valueOrders(Status.DELIVERED);
+    }
+
+    // Ingreso generado por un producto en las ordenes SENT y DELIVERED de este cliente
+    public double incomeOfProduct(Product product) {
+        double total = 0;
+        for (Order order : orders) {
+            if (order.getStatus() == Status.SENT || order.getStatus() == Status.DELIVERED) {
+                for (Element element : order.getProducts()) {
+                    if (element.getProduct() == product) {
+                        total += element.getSubtotal();
+                    }
+                }
+            }
+        }
+        return total;
+    }
+
     public ArrayList<Order> getOrders() {
         return orders;
     }
-
-    public Order getOrder(int id) {
-        for (Order order : orders) {
-            if (order.getId() == id) {
-                return order;
-            }
-        }
-        return null;
-    }
-    
-    
 }

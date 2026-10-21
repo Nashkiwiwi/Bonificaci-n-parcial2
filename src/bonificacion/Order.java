@@ -59,7 +59,7 @@ public class Order {
     }
  
     public void confirm() {
-        if (status == Status.PENDING && isValid()) {
+        if (status == Status.PENDING) {
             for (Element element : products) {
                 element.getProduct().decreaseStock(element.getQuantity());
             }
