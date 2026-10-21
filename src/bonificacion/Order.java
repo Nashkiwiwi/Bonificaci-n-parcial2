@@ -10,43 +10,86 @@ public class Order {
     private int id;
     private Client client;
     private LocalDate date;
-    private Status status=Status.PENDING;
-    private List<Element> products=new ArrayList<>();
-    
-    public Order(int id, Client client, LocalDate date){
-        this.id=id; 
-        this.client=client; 
-        this.date=date;
+    private Status status;
+    private ArrayList<Element> products;
+ 
+    public Order(int id, Client client, LocalDate date) {
+        this.id = id;
+        this.client = client;
+        this.date = date;
+        this.status = Status.PENDING;
+        this.products = new ArrayList<>();
     }
-    public int getId(){
+ 
+    public int getId() {
         return id;
     }
-    public Client getClient(){
+ 
+    public Client getClient() {
         return client;
     }
-    public LocalDate getDate(){
+ 
+    public LocalDate getDate() {
         return date;
     }
-    public Status getStatus(){
+ 
+    public Status getStatus() {
         return status;
     }
-    public List<Element> getProducts(){return Collections.unmodifiableList(products);}
-    public boolean addProduct(Product product, int quantity) {
-        if(status!=Status.PENDING || product==null || quantity<=0) return false;
-        for(Element e:products) if(e.getProduct()==product) return false;
-        products.add(new Element(product,quantity)); return true;
+ 
+    public ArrayList<Element> getProducts() {
+        return products;
     }
-    public double getTotal(){double total=0; for(Element e:products) total+=e.getTotal(); return total;}
-    public boolean confirm(){
-        if(status!=Status.PENDING || products.isEmpty()) return false;
-        for(Element e:products) if(!e.getProduct().hasStock(e.getQuantity())) return false;
-        for(Element e:products) e.getProduct().decreaseStock(e.getQuantity());
-        status=Status.SENT; return true;
+ 
+    // Solo se pueden añadir productos mientras la orden está PENDING
+    public void addProduct(Product product, int quantity) {
+        if (status == Status.PENDING) {
+            products.add(new Element(product, quantity));
+        }
     }
-    public boolean receive(){if(status!=Status.SENT) return false; status=Status.DELIVERED; return true;}
-    public boolean cancel(){
-        if(status==Status.CANCELED || status==Status.DELIVERED) return false;
-        if(status==Status.SENT) for(Element e:products) e.getProduct().increaseStock(e.getQuantity());
-        status=Status.CANCELED; return true;
+ 
+    // Una orden es válida cuando todos sus productos tienen stock suficiente
+    public boolean isValid() {
+        for (Element element : products) {
+            if (!element.getProduct().hasStock(element.getQuantity())) {
+                return false;
+            }
+        }
+        return true;
+    }
+ 
+    public void confirm() {
+        if (status == Status.PENDING && isValid()) {
+            for (Element element : products) {
+                element.getProduct().decreaseStock(element.getQuantity());
+            }
+            status = Status.SENT;
+        }
+    }
+ 
+    public void receive() {
+        if (status == Status.SENT) {
+            status = Status.DELIVERED;
+        }
+    }
+ 
+    public void cancel() {
+        if (status == Status.PENDING) {
+            status = Status.CANCELED;
+        } else if (status == Status.SENT) {
+            // El stock solo se había reducido al confirmar, por eso se devuelve aquí
+            for (Element element : products) {
+                element.getProduct().increaseStock(element.getQuantity());
+            }
+            status = Status.CANCELED;
+        }
+    }
+ 
+    public double getTotal() {
+        double total = 0;
+        for (Element element : products) {
+            total += element.getSubtotal();
+        }
+        return total;
     }
 }
