@@ -32,4 +32,7 @@ public class Element {
         return price;
     }
     
+    public double getSubtotal() {
+        return price * quantity;
+    }
 }
