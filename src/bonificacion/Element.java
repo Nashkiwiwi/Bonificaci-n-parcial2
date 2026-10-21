@@ -1,0 +1,18 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package bonificacion;
+
+/**
+ *
+ * @author kamelln
+ */
+public class Element {
+    private int aaaa;
+
+    public Element(int aaaa) {
+        this.aaaa = aaaa;
+    }
+    
+}

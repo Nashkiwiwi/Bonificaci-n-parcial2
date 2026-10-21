@@ -8,6 +8,6 @@ package bonificacion;
  *
  * @author kamelln
  */
-public class aaa {
+public class Store {
     
 }
