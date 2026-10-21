@@ -22,6 +22,21 @@ public abstract class User {
         this.email = email;
         this.registrationDate = registrationDate;
     }
-    
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public LocalDate getRegistrationDate() {
+        return registrationDate;
+    }
     
 }

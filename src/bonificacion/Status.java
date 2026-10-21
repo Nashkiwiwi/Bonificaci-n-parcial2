@@ -9,5 +9,7 @@ package bonificacion;
  * @author USUARIO
  */
 public enum Status {
+    PENDING, SENT, DELIVERED, CANCELED;
+    
     
 }
