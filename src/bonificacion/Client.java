@@ -4,6 +4,7 @@
  */
 package bonificacion;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -12,6 +13,12 @@ import java.util.ArrayList;
  */
 public class Client extends User {
     private ArrayList<Order> orders;
+
+    public Client(int id, String name, String email, LocalDate registrationDate) {
+        super(id, name, email, registrationDate);
+        this.orders = new ArrayList<>();
+    }
+    
     
     
 }

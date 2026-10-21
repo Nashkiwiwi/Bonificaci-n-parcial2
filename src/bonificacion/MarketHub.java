@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package bonificacion;
-
 import java.util.ArrayList;
 
 /**
@@ -20,7 +19,9 @@ public class MarketHub {
         
     }
     
-    public addCliente()
+    public void addCliente(User user){
+       
+    }
     
     
 }
