@@ -71,7 +71,7 @@ public class MarketHub {
     // Busqueda por identificador
     public Client getClient(int id) {
         for (User user : users) {
-            if (user instanceof Client && user.getId() == id) {
+            if ( user.getId() == id) {
                 return (Client) user;
             }
         }
@@ -81,7 +81,7 @@ public class MarketHub {
     // Busqueda por identificador
     public Seller getSeller(int id) {
         for (User user : users) {
-            if (user instanceof Seller && user.getId() == id) {
+            if (user.getId() == id) {
                 return (Seller) user;
             }
         }
