@@ -4,10 +4,14 @@
  */
 package bonificacion;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author kamelln
  */
-public class Client {
+public class Client extends User {
+    private ArrayList<Order> orders;
+    
     
 }

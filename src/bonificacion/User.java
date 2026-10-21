@@ -4,10 +4,17 @@
  */
 package bonificacion;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author kamelln
  */
-public class User {
+public abstract class User {
+    protected int id;
+    protected String name;
+    protected String email;
+    protected LocalDate registrationDate;
+    
     
 }

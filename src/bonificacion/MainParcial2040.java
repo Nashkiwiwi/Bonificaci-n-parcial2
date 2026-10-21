@@ -1,3 +1,7 @@
+import bonificacion.Client;
+import bonificacion.MarketHub;
+import bonificacion.Product;
+import bonificacion.Seller;
 import java.time.LocalDate;
 
 public class MainParcial2040 {

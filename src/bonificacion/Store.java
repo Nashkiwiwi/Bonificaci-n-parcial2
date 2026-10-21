@@ -4,10 +4,18 @@
  */
 package bonificacion;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 /**
  *
  * @author kamelln
  */
 public class Store {
+    private String name;
+    private LocalDate creationDate;
+    private String owner;
+    private ArrayList<Product> products;
+    
     
 }

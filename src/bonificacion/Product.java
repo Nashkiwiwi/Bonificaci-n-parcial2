@@ -9,5 +9,9 @@ package bonificacion;
  * @author kamelln
  */
 public class Product {
-    
+    private String name;
+    private String description;
+    private float price;
+    private String category;
+    private int  inventoryQuantity;
 }

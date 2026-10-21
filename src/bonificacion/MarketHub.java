@@ -4,10 +4,23 @@
  */
 package bonificacion;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author kamelln
  */
 public class MarketHub {
+    private ArrayList<User> users;
+    private ArrayList <Store> stores;
+
+    public MarketHub() {
+        this.users = new ArrayList<>();
+        this.stores = new ArrayList<>();
+        
+    }
+    
+    public addCliente()
+    
     
 }

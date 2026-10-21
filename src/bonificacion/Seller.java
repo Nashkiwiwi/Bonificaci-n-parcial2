@@ -8,6 +8,6 @@ package bonificacion;
  *
  * @author kamelln
  */
-public class Seller {
-    
+public class Seller extends User{
+    private Store store;
 }
